@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Admin 🛠️</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <div class="navigationBarre">
+    <ion-button routerLink="/home">
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-button>
+    <ion-button routerLink="/new">
+      <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+      <ion-label>Ajouter une pizza</ion-label>
+    </ion-button>
+  </div>
+ 
+  <div *ngFor="let test of tests">
+    <div class="cataloguePizza">
+      <img src="{{test.photo}}" />
+      <span>{{test.nom}} : {{test.prix}} €</span>
+      <ion-button (click)="updatePizza()">Modifier</ion-button>
+      <ion-button (click)="deletePizza()">Supprimer</ion-button>
+    </div>
+  </div>
+</ion-content>
