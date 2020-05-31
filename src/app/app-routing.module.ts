@@ -32,6 +32,16 @@ const routes: Routes = [
       import("../app/pages/pizzas/single-pizza/single-pizza.module").then(
         m => m.SinglePizzaPageModule
       )
+  },
+  {
+    path: "new",
+    loadChildren: () =>
+      import("../app/pages/new/new.module").then(m => m.NewPageModule)
+  },
+  {
+    path: "update/:id",
+    loadChildren: () =>
+      import("../app/pages/update/update.module").then(m => m.UpdatePageModule)
   }
 ];
 

@@ -1,7 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Votre panier 🛒</ion-title>
+    <ion-title>Mon panier</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content><p>Votre panier est vide</p></ion-content>
+<ion-content>
+  <div>
+    <p>{{ tun }}</p>
+    <p>{{ tdeux }}</p>
+  </div>
+  <p id="empty">Mon panier est vide</p>
+  <!-- <p>Total : {{ total }}</p> -->
+</ion-content>

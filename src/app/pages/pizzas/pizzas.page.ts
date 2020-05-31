@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { ArticleComponent } from "../../article/article.component";
 
+export module addToBasket {}
 @Component({
   selector: "app-pizzas",
   templateUrl: "./pizzas.page.html",
@@ -33,52 +34,31 @@ export class PizzasPage {
     console.log(this.pizzasList);
   }
 
-  // tests = this.getAllPizzas();
-  //   tests = [
-  //   { name: "jojo", prix: "1" },
-  //   { name: "rere", prix: "5" }
-  // ];
-
   tests: any;
 
   getAllPizzas() {
-    //  this.pizzasList = await this.pizzasService.getPizzas().toPromise();
-
     this.pizzasService.getPizzas().subscribe(
       value => {
         this.pizzasList = value;
         let pizzapi = JSON.parse(JSON.stringify(value));
-        // let pizzapi = JSON.stringify(value);
 
         console.log(pizzapi);
         this.tests = pizzapi;
-        // var zert = new Array()
-        // return ["pizzapi", "zet", "eqf"];
       },
-      erreur => {
-        //show error
-      }
+      erreur => {}
     );
   }
 
-  addToBasket() {
+  addToBasket(pizza) {
     console.log("AddToBasket");
-  }
+    console.log(pizza);
+    let arr = [];
 
-  // tests = this.getAllPizzas;
-
-  getAllPizzasV2() {
-    //  this.pizzasList = await this.pizzasService.getPizzas().toPromise();
-
-    this.pizzasService.getPizzas().subscribe(
-      value => {
-        this.pizzasList = value;
-        let pizzapi = JSON.parse(JSON.stringify(value));
-        console.log(pizzapi);
-      },
-      erreur => {
-        //show error
-      }
-    );
+    if (localStorage.getItem("pizzArray")) {
+      arr = JSON.parse(localStorage.getItem("pizzArray"));
+      localStorage.setItem("pizzArray", JSON.stringify(arr));
+    }
+    arr.push(pizza);
+    localStorage.setItem("pizzArray", JSON.stringify(arr));
   }
 }

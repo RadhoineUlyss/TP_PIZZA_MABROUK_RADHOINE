@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Nos pizzas ! 🍕</ion-title>
+    <ion-title>Nos pizzas !</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,25 +8,14 @@
   <div class="navigationBarre">
     <ion-button routerLink="/home">
       <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Home</ion-label>
+      <ion-label>Acceuil</ion-label>
     </ion-button>
 
     <ion-button routerLink="/panier">
       <ion-icon name="basket" slot="start"></ion-icon>
-      <ion-label>Votre Panier</ion-label>
+      <ion-label>Mon Panier</ion-label>
     </ion-button>
   </div>
-
-  <!-- <div id="test">
-    <div class="cataloguePizza">
-      <a href="..">
-        <img src="photoDeLaPizza" />
-        <p>Royal: 12,5 €</p>
-      </a>
-      <ion-button (click)="addToBasket()">
-        <ion-label>Ajouter au Panier</ion-label>
-      </ion-button>
-    </div> -->
 
   <div *ngFor="let test of tests">
     <div class="cataloguePizza">
@@ -34,6 +23,7 @@
       <span>
         {{test.nom}} : {{test.prix}} €
       </span>
+      <ion-button (click)="addToBasket(test)">Ajouter au panier</ion-button>
     </div>
   </div>
 

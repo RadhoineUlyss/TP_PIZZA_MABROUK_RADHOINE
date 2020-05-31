@@ -1,27 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Admin 🛠️</ion-title>
+    <ion-title>Ajouter une nouvelle pizza</ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content>
   <div class="navigationBarre">
     <ion-button routerLink="/home">
       <ion-icon name="home" slot="start"></ion-icon>
-      <ion-label>Home</ion-label>
+      <ion-label>Accueil</ion-label>
     </ion-button>
     <ion-button routerLink="/new">
       <ion-icon name="add-circle-outline" slot="start"></ion-icon>
       <ion-label>Ajouter une pizza</ion-label>
     </ion-button>
   </div>
- 
-  <div *ngFor="let test of tests">
+
+  <div *ngFor="let test of pizzasList">
     <div class="cataloguePizza">
-      <img src="{{test.photo}}" />
+      <img [src]="test.photo" />
       <span>{{test.nom}} : {{test.prix}} €</span>
-      <ion-button (click)="updatePizza()">Modifier</ion-button>
-      <ion-button (click)="deletePizza()">Supprimer</ion-button>
+      <ion-button (click)="goPizza(test.id)">Modifier Ma pizza</ion-button
+      ><!-- (test.id , { objet pizza} ) -->
+      <ion-button (click)="deletePizza(test.id)">Supprimer ma pizza</ion-button>
     </div>
   </div>
 </ion-content>

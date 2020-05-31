@@ -6,7 +6,8 @@ import {
   ComponentFactoryResolver
 } from "@angular/core";
 import { ArticleComponent } from "../../article/article.component";
- 
+import { Router } from "@angular/router";
+
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.page.html",
@@ -15,41 +16,46 @@ import { ArticleComponent } from "../../article/article.component";
 export class AdminPage {
   constructor(
     public pizzasService: PizzasService,
-    private resolver: ComponentFactoryResolver
+    private resolver: ComponentFactoryResolver,
+    private router: Router
   ) {}
- 
+
   entry: ViewContainerRef;
   pizzasList: any[];
   tests: any;
- 
+
   ionViewDidEnter() {
     const surveyFormFactory = this.resolver.resolveComponentFactory(
       ArticleComponent
     );
- 
+
     console.log(this.pizzasList);
     this.getAllPizzas();
     console.log(this.pizzasList);
   }
- 
+
   getAllPizzas() {
     this.pizzasService.getPizzas().subscribe(
       value => {
         this.pizzasList = value;
         let pizzapi = JSON.parse(JSON.stringify(value));
- 
+
         console.log(pizzapi);
         this.tests = pizzapi;
       },
       erreur => {}
     );
   }
- 
-  deletePizza() {
-    console.log("it work");
+
+  deletePizza(id) {
+    this.pizzasService.deletePizza(id).subscribe(x => {
+      this.pizzasList = this.pizzasList.filter(pizzaDeLaliste => {
+        return pizzaDeLaliste.id != id;
+      });
+    });
   }
- 
-  updatePizza() {
-    console.log("it work");
+
+  goPizza(id) {
+    this.router.navigate(["update", id]);
   }
 }
